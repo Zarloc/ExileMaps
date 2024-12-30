@@ -88,7 +88,7 @@ public class ExileMaps : BaseSettingsPlugin<ExileMapsSettings>
                 bool hasExpedition = Settings.Highlights.HighlightExpedition && nodeContent.Any(x => x.Name.Contains("Expedition"));
                 bool hasRitual = Settings.Highlights.HighlightRitual && nodeContent.Any(x => x.Name.Contains("Ritual"));
                 bool hasBoss = Settings.Highlights.HighlightBosses && nodeContent.Any(x => x.Name.Contains("Boss"));
-                bool isUntaintedParadise = Settings.Highlights.HighlightUntaintedParadise && mapNode.Element.Area.Name.Contains("UntaintedParadise");
+                bool isUntaintedParadise = Settings.Highlights.HighlightUntaintedParadise && mapNode.Element.Area.Id.Contains("UntaintedParadise");
                 bool isTrader = Settings.Highlights.HighlightTrader && mapNode.Element.Area.Id.Contains("Merchant");
                 bool isCitadel = Settings.Highlights.HighlightTrader && mapNode.Element.Area.Name.Contains("Citadel");
 
@@ -161,7 +161,7 @@ public class ExileMaps : BaseSettingsPlugin<ExileMapsSettings>
                 bool hasExpedition = Settings.Highlights.HighlightExpedition && nodeContent.Any(x => x.Name.Contains("Expedition"));
                 bool hasRitual = Settings.Highlights.HighlightRitual && nodeContent.Any(x => x.Name.Contains("Ritual"));
                 bool hasBoss = Settings.Highlights.HighlightBosses && nodeContent.Any(x => x.Name.Contains("Boss"));
-                bool isUntaintedParadise = Settings.Highlights.HighlightUntaintedParadise && mapNode.Element.Area.Name.Contains("UntaintedParadise");
+                bool isUntaintedParadise = Settings.Highlights.HighlightUntaintedParadise && mapNode.Element.Area.Id.Contains("UntaintedParadise");
                 bool isTrader = Settings.Highlights.HighlightTrader && mapNode.Element.Area.Id.Contains("Trader");
                 bool isCitadel = Settings.Highlights.HighlightTrader && mapNode.Element.Area.Name.Contains("Citadel");
 
@@ -236,7 +236,7 @@ public class ExileMaps : BaseSettingsPlugin<ExileMapsSettings>
                 bool hasExpedition = Settings.Highlights.HighlightExpedition && nodeContent.Any(x => x.Name.Contains("Expedition"));
                 bool hasRitual = Settings.Highlights.HighlightRitual && nodeContent.Any(x => x.Name.Contains("Ritual"));
                 bool hasBoss = Settings.Highlights.HighlightBosses && nodeContent.Any(x => x.Name.Contains("Boss"));
-                bool isUntaintedParadise = Settings.Highlights.HighlightUntaintedParadise && mapNode.Element.Area.Name.Contains("UntaintedParadise");
+                bool isUntaintedParadise = Settings.Highlights.HighlightUntaintedParadise && mapNode.Element.Area.Id.Contains("UntaintedParadise");
                 bool isTrader = Settings.Highlights.HighlightTrader && mapNode.Element.Area.Id.Contains("Merchant");
                 bool isCitadel = Settings.Highlights.HighlightTrader && mapNode.Element.Area.Name.Contains("Citadel");
 
