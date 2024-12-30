@@ -78,6 +78,11 @@ public class ExileMapsSettings : ISettings
         [Menu("Draw Lines to Untainted Paradise", "Draw lines from the Ziggurat to incomplete Untained Paradise maps on the Atlas")]
         public ToggleNode LineToParadise { get; set; } = new ToggleNode(false);
 
+        [Menu("Draw Lines to Hideout", "Draw lines from the Ziggurat to incomplete Hideout maps on the Atlas")]
+        public ToggleNode LineToHideout { get; set; } = new ToggleNode(false);
+        [ConditionalDisplay(nameof(LineToHideout))]
+        public TextNode HideoutFilter { get; set; } = new TextNode("Hideout");
+
         [Menu("Highlight Trader Maps", "Highlight traders with a ring on the Atlas")]
         public ToggleNode HighlightTrader { get; set; } = new ToggleNode(true);
 
@@ -91,7 +96,10 @@ public class ExileMapsSettings : ISettings
         [ConditionalDisplay(nameof(HighlightCitadel))]
         [Menu("Draw Lines to Citadels", "Draw lines from the Ziggurat to incomplete citadels on the Atlas")]
         public ToggleNode LineToCitadel { get; set; } = new ToggleNode(false);
-    }
+
+        public ToggleNode DrawDistanceOnLine { get; set; } = new ToggleNode(true);
+        public RangeNode<float> DrawDistanceOnLineScale { get; set; } = new RangeNode<float>(0.03f, 0, 1);
+}
 
     [Submenu(CollapsedByDefault = false)]
     public class GraphicSettings
@@ -119,6 +127,9 @@ public class ExileMapsSettings : ISettings
 
         [Menu("Untainted Paradise Color", "Color of the ring around untainted paradise on the Atlas")]
         public ColorNode untaintedParadiseColor { get; set; } = new ColorNode(Color.FromArgb(200, 50, 200, 50));
+
+        [Menu("Hideout Color", "Color of the ring around hideout on the Atlas")]
+        public ColorNode hideoutColor { get; set; } = new ColorNode(Color.FromArgb(200, 97, 138, 157));
 
         [Menu("Trader Color", "Color of the ring around traders on the Atlas")]
         public ColorNode traderColor { get; set; } = new ColorNode(Color.FromArgb(100, 0, 0, 0));

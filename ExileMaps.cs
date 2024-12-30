@@ -6,7 +6,6 @@ using System.Linq;
 using System.Numerics;
 
 using System.Drawing;
-using ExileCore2.PoEMemory;
 namespace ExileMaps;
 
 
@@ -164,6 +163,7 @@ public class ExileMaps : BaseSettingsPlugin<ExileMapsSettings>
                 bool isUntaintedParadise = Settings.Highlights.HighlightUntaintedParadise && mapNode.Element.Area.Id.Contains("UntaintedParadise");
                 bool isTrader = Settings.Highlights.HighlightTrader && mapNode.Element.Area.Id.Contains("Trader");
                 bool isCitadel = Settings.Highlights.HighlightTrader && mapNode.Element.Area.Name.Contains("Citadel");
+                bool isHideout = mapNode.Element.Area.IsHideout && mapNode.Element.Area.Id.Contains(Settings.Highlights.HideoutFilter);
 
                 var ringCount = 0;
                 
@@ -200,6 +200,11 @@ public class ExileMaps : BaseSettingsPlugin<ExileMapsSettings>
                         DrawLineToMapNode(mapNode, zigguratNode, Settings.Graphics.untaintedParadiseColor);
                     
                     ringCount++;
+                }
+                if (isHideout)
+                {
+                    if (Settings.Highlights.LineToHideout)
+                        DrawLineToMapNode(mapNode, zigguratNode, Settings.Graphics.hideoutColor);
                 }
                 if (isTrader)
                 {
@@ -239,6 +244,7 @@ public class ExileMaps : BaseSettingsPlugin<ExileMapsSettings>
                 bool isUntaintedParadise = Settings.Highlights.HighlightUntaintedParadise && mapNode.Element.Area.Id.Contains("UntaintedParadise");
                 bool isTrader = Settings.Highlights.HighlightTrader && mapNode.Element.Area.Id.Contains("Merchant");
                 bool isCitadel = Settings.Highlights.HighlightTrader && mapNode.Element.Area.Name.Contains("Citadel");
+                bool isHideout = mapNode.Element.Area.IsHideout && mapNode.Element.Area.Id.Contains(Settings.Highlights.HideoutFilter);
 
                 var ringCount = 0;
                 
@@ -275,6 +281,11 @@ public class ExileMaps : BaseSettingsPlugin<ExileMapsSettings>
                         DrawLineToMapNode(mapNode, zigguratNode, Settings.Graphics.untaintedParadiseColor);
                     
                     ringCount++;
+                }
+                if (isHideout)
+                {
+                    if (Settings.Highlights.LineToHideout)
+                        DrawLineToMapNode(mapNode, zigguratNode, Settings.Graphics.hideoutColor);
                 }
                 if (isTrader)
                 {
@@ -346,6 +357,14 @@ public class ExileMaps : BaseSettingsPlugin<ExileMapsSettings>
     private void DrawLineToMapNode(AtlasNodeDescription mapNode, AtlasNodeDescription fromNode, Color color)
     {
         Graphics.DrawLine(fromNode.Element.GetClientRect().Center, mapNode.Element.GetClientRect().Center, 4.0f, color);
+
+        if (Settings.Highlights.DrawDistanceOnLine) {
+            string distance = Vector2.Distance(fromNode.Coordinate, mapNode.Coordinate).ToString("0");
+
+            Vector2 position = Vector2.Lerp(fromNode.Element.GetClientRect().Center, mapNode.Element.GetClientRect().Center, Settings.Highlights.DrawDistanceOnLineScale);
+
+            DrawTextWithBackground(distance, position, Settings.Graphics.FontColor, Settings.Graphics.BackgroundColor, false, 10, 4);
+        }
     }
 
     private void DrawMapName(AtlasNodeDescription mapNode)
